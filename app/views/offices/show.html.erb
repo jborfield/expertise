@@ -1,0 +1,27 @@
+<p>
+  <strong>Location:</strong>
+  <%= @office.location %>
+</p>
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>Staff</th>
+      <th>Title</th>
+      <th>Department</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @office.staffs.each do |staff| %>
+      <tr>
+        <td><%= link_to staff.name_full, staff %></td>
+        <td><%= staff.title %></td>
+        <td><%= link_to staff.department.name, department_path(staff.department_id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_office_path(@office) %> |
+<%= link_to 'Back', offices_path %>

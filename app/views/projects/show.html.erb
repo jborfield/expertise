@@ -1,0 +1,30 @@
+<p>
+  <strong>Name:</strong>
+  <%= @project.name %>
+  <%= link_to 'Edit', edit_project_path(@project) %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @project.description %>
+</p>
+
+<p>
+  <strong>Lead:</strong>
+  <%= @lead.name_full %>
+</p>
+
+<p>
+  <strong>Staff:</strong>
+  <%= @project.staffs.map { |s| s.name_full }.join(', ') %>
+</p>
+
+<% if @previous %>
+  <%= link_to '<< Previous Project', @previous %> | 
+<% end %>
+
+<%= link_to 'All Projects', projects_path %>
+
+<% if @next %>
+   | <%= link_to 'Next Project >>', @next %>
+<% end %>

@@ -1,0 +1,64 @@
+<%= form_for(@staff) do |f| %>
+  <% if @staff.errors.any? %>
+    <div id='error_explanation'>
+      <h2><%= pluralize(@staff.errors.count, 'error') %> prohibited this staff from being saved:</h2>
+
+      <ul>
+      <% @staff.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class='form-group'>
+    <%= f.label :office_id %>
+    <%= f.collection_select :office_id, Office.all, :id, :location, {prompt: true}, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :department_id %>
+    <%= f.collection_select :department_id, Department.all, :id, :name, {prompt: true}, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :title %>
+    <%= f.text_field :title, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :bio %>
+    <%= f.text_area :bio, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class='form-inline'>
+    <%= f.label :start %>
+    <%= f.date_select :start, {:start_year => 1970, :discard_day => true}, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :projects %>
+    <%= f.collection_check_boxes :project_ids, Project.all, :id, :name, class: 'form-control' %>
+  </div>
+
+  <table class='table table-striped'>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Project</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= f.collection_check_boxes(:project_ids, Project.all, :id, :name) do |b| %>
+        <%= b.label(class: 'check_box') do %>
+          <tr>
+            <td><%= b.check_box(class: 'check_box') %></td>
+            <td><%= b.object.name %></td>
+            <td><%= b.object.description %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class='form-group'>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3 class='panel-title'>Skill: <%= @tool.name %></h3>
+  </div>
+
+  <table class='table table-striped'>
+    <thead>
+      <tr>
+        <th>Staff</th>
+        <th>Office</th>
+        <th>Proficiency</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @tool.staffs.each do |staff| %>
+        <tr>
+          <td><%= staff.name_full %></td>
+          <td><%= staff.office.location %></td>
+          <td><%= @skillset.proficiency %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
+
+<%= link_to 'Edit', edit_tool_path(@tool) %> |
+<%= link_to 'Back', tools_path %>

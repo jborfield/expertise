@@ -1,0 +1,33 @@
+<h1>All Offices</h1>
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>
+        Location
+        <small class="text-muted"><i class='fa fa-location-arrow'> Satellite Office</i></small>
+      </th>
+      <th>Staff</th>
+      <th colspan='3'></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @offices.each do |office| %>
+      <tr>
+        <td>
+          <%= link_to office.location, office %>
+          <% if office.remote == true %>
+            <i class='fa fa-location-arrow'></i>
+          <% end %>
+        </td>
+        <td><span class='badge'><%= office.staffs.count %></span></td>
+        <td><%= link_to 'Show', office %></td>
+        <td><%= link_to 'Edit', edit_office_path(office) %></td>
+        <td><%= link_to 'Destroy', office, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Office', new_office_path %>

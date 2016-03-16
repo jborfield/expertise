@@ -1,0 +1,34 @@
+<h1>
+  All Staff <span class='badge'><%= @staffs.count %></span>
+</h1>
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Department</th>
+      <th>Title</th>
+      <th>Office</th>
+      <th colspan='3'></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @staffs.each do |staff| %>
+      <tr>
+        <td><%= link_to staff.name_first, staff %></td>
+        <td><%= link_to staff.name_last, staff %></td>
+        <td><%= link_to staff.department.name, department_path(staff.department_id) %></td>
+        <td><%= staff.title %></td>
+        <td><%= link_to staff.office.location, office_path(staff.office_id) %></td>
+        <% if current_staff %>
+          <td><%= link_to 'Edit', edit_staff_path(staff) %></td>
+          <td><%= link_to 'Destroy', staff, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Staff', new_staff_path %>

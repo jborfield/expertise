@@ -1,0 +1,29 @@
+<h1>Listing Skillsets</h1>
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>Staff</th>
+      <th>Tool</th>
+      <th>Proficiency</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @skillsets.each do |skillset| %>
+      <tr>
+        <td><%= skillset.staff.name_full if skillset.staff %></td>
+        <td><%= skillset.tool.name if skillset.tool %></td>
+        <td><%= skillset.proficiency if skillset.proficiency %></td>
+        <td><%= link_to 'Show', skillset %></td>
+        <td><%= link_to 'Edit', edit_skillset_path(skillset) %></td>
+        <td><%= link_to 'Destroy', skillset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Skillset', new_skillset_path %>
+<%= link_to 'New Staff', new_staff_path %>
+<%= link_to 'New Tool', new_tool_path %>

@@ -1,0 +1,28 @@
+<%= form_for(@skillset) do |f| %>
+  <% if @skillset.errors.any? %>
+    <div id='error_explanation'>
+      <h2><%= pluralize(@skillset.errors.count, 'error') %> prohibited this skillset from being saved:</h2>
+
+      <ul>
+      <% @skillset.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class='form-group'>
+    <%= f.label :tool_id %>
+    <%= f.collection_select :tool_id, Tool.all.collect, :id, :name, {prompt: true}, class: 'form-control' %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :proficiency %>
+    <%= f.select :proficiency, [['Novice'], ['Competent'], ['Experienced'], ['Expert']], {prompt: true}, class: 'form-control' %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+  </div>
+
+<% end %>

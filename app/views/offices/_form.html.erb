@@ -1,0 +1,41 @@
+<%= form_for(@office) do |f| %>
+  <% if @office.errors.any? %>
+    <div id='error_explanation'>
+      <h2><%= pluralize(@office.errors.count, 'error') %> prohibited this office from being saved:</h2>
+
+      <ul>
+      <% @office.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class='form-group'>
+    <%= f.label :location %>
+    <%= f.text_field :location, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :street %>
+    <%= f.text_field :street, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :city %>
+    <%= f.text_field :city, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :state %>
+    <%= f.text_field :state, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :zip %>
+    <%= f.text_field :zip, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :remote %>
+    <%= f.check_box :remote, autofocus: true, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+  </div>
+<% end %>

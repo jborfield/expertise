@@ -1,0 +1,84 @@
+<h1><%= @staff.name_full %></h1>
+
+<p>
+  <strong>Office:</strong>
+  <%= link_to @staff.office.location, office_path(@staff.office_id) %>
+</p>
+<p>
+  <strong>Title:</strong>
+  <%= @staff.title %>
+</p>
+<p>
+  <strong>Bio:</strong>
+  <%= @staff.bio %>
+</p>
+<p>
+  <strong>Tenure:</strong>
+  <% unless @staff.start.nil? || @staff.start == 0 %>
+    <%= @staff.tenure %>+ years
+  <% end %>
+</p>
+
+<div class='row'>
+  <div class='col-md-6'>
+    <div class='panel panel-default'>
+      <!-- Default panel contents -->
+      <div class='panel-heading'>
+        <h4>Projects</h4>
+      </div>
+
+      <!-- Table -->
+      <table class='table table-hover'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @staff.projects.each do |project| %>
+            <tr>
+              <td><%= link_to project.name, project_path %></td>
+              <td><%= project.description %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class='col-md-6'>
+    <div class='panel panel-default'>
+      <!-- Default panel contents -->
+      <div class='panel-heading'>
+        <h4>Skillsets</h4>
+      </div>
+
+        <!-- Table -->
+        <table class='table table-hover'>
+          <thead>
+            <tr>
+            <th>Skill <%= link_to '(New Skillset)', new_skillset_path %></th>
+            <th>Proficiency</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @staff.tools.each do |tool| %>
+            <tr>
+              <td><%= link_to tool.name, tool_path %></td>
+              <td><%= @skillset.proficiency %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<% if current_staff %>
+  <%= link_to 'Edit', edit_staff_path(@staff) %> |
+<% end %>
+
+<%= link_to 'All Staff', staffs_path %>

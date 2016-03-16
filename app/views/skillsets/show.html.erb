@@ -1,0 +1,17 @@
+<p>
+  <strong>Staff:</strong>
+  <%= @skillset.staff.name_full %>
+</p>
+
+<p>
+  <strong>Tool:</strong>
+  <%= @skillset.tool.name %>
+</p>
+
+<p>
+  <strong>Proficiency:</strong>
+  <%= @skillset.proficiency %>
+</p>
+
+<%= link_to 'Edit', edit_skillset_path(@skillset) %> |
+<%= link_to 'Back', skillsets_path %>
